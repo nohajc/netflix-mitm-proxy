@@ -19,3 +19,6 @@ or when a previous session has expired.
 
 To force new handshake, either clear all cookies and local storage for all Netflix domains
 or just create a new browser profile which will have empty history.
+
+After the script is first run, it will save the negotiated AES key
+to current working directory and use it next time.
