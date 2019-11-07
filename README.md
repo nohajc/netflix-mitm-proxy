@@ -11,7 +11,15 @@ This is a mitmproxy script which will decrypt Netflix MSL requests and responses
 5. Analyze the generated `proxy.log`
 6. Profit
 
-## Gotchas
+## Troubleshooting
+
+### mitmproxy on Windows cannot find python dependencies
+
+Don't use the Windows installer because it includes a bundled python runtime which won't see any libraries installed with pip.
+
+Installing mitmproxy with pip should work. Alternatively, the Linux version can be used in [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+
+### Decryption doesn't work
 
 For the decryption to work, mitmproxy has to intercept MSL handshake.
 That usually happens only after the very first login to Netflix
