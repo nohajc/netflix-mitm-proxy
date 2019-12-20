@@ -285,6 +285,8 @@ def request(flow: http.HTTPFlow):
 
 def response(flow: http.HTTPFlow):
     global MSLAESKey
+    global ClientPublicKey
+    global ProxyRSAKey
     if isMSLAPI(flow.request.pretty_url):
         logging.info("Netflix msl response: " + flow.request.pretty_url)
         parsedResponse = None
