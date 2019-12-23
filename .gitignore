@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyCharm
+.idea
+
+# Visual Studio Code
+.vscode
+
+# Visual Studio
+*.pyproj
+*.sln
+.vs/
+
+# Logs
+proxy.log
+proxy_bak.log
+session.json
+
+# Cert
+mitmproxy-ca-cert.p12
