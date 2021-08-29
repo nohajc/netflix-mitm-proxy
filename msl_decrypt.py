@@ -117,6 +117,8 @@ ProxyRSAKey = None
 MSLAESKey = None
 Mechanism = None
 
+FirstRun = False
+
 random.seed(0)
 
 
@@ -149,6 +151,8 @@ def appendChunk(parsedReqChunks, data):
 
 def initSession():
     global MSLAESKey
+    global FirstRun
+
     try:
         f = open("session.json", "r")
         session = json.loads(f.read())
@@ -157,15 +161,15 @@ def initSession():
         logging.info("Loaded AESKey: " + keyEncoded)
         f.close()
     except json.JSONDecodeError:
-        MSLAESKey = ""
         logging.info("Could not parse session.json")
     except IOError:
-        MSLAESKey = ""
-        logging.info("Could not open session.json")
+        logging.info("Could not open session.json, AES key not available yet.")
+        FirstRun = True
 
 
 def updateSession():
     global MSLAESKey
+
     try:
         f = open("session.json", "w")
         session = {
@@ -184,7 +188,9 @@ def isMSLAPI(url):
 
 def request(flow: http.HTTPFlow):
     global MSLAESKey
-    if MSLAESKey is None:
+    global FirstRun
+
+    if MSLAESKey is None and not FirstRun:
         initSession()
 
     if isMSLAPI(flow.request.pretty_url):
