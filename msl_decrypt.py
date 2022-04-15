@@ -183,7 +183,7 @@ def updateSession():
 
 
 def isMSLAPI(url):
-    return "msl_v1/cadmium" in url or "msl/cadmium" in url
+    return "msl_v1/cadmium" in url or "msl/cadmium" in url or "msl/playapi/cadmium" in url
 
 
 def request(flow: http.HTTPFlow):
